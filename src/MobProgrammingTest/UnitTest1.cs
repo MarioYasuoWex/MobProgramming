@@ -1,4 +1,6 @@
 using MobProgramming;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace MobProgrammingTest
 {
@@ -19,5 +21,6 @@ namespace MobProgrammingTest
             //Assert
             Assert.That(result, Is.EqualTo("Hello World!") );
         }
+
     }
 }

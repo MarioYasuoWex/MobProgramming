@@ -2,6 +2,8 @@ namespace SimpleCalculator
 {
     public partial class Form1 : Form
     {
+        
+
         public Form1()
         {
             InitializeComponent();
@@ -60,6 +62,21 @@ namespace SimpleCalculator
         private void button0_Click(object sender, EventArgs e)
         {
             display.Text += "0";
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void display_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

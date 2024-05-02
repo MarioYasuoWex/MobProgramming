@@ -2,7 +2,7 @@ namespace SimpleCalculator
 {
     public partial class Form1 : Form
     {
-        
+
 
         public Form1()
         {
@@ -14,9 +14,9 @@ namespace SimpleCalculator
             display.Text += "1";
         }
 
-        private void button14_Click(object sender, EventArgs e)
+        private void btn_mult_Click(object sender, EventArgs e)
         {
-            display.Text += "";
+            display.Text += "*";
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -64,7 +64,7 @@ namespace SimpleCalculator
             display.Text += "0";
         }
 
-        private void button15_Click(object sender, EventArgs e)
+        private void btn_equal_Click(object sender, EventArgs e)
         {
 
         }
@@ -74,9 +74,25 @@ namespace SimpleCalculator
 
         }
 
-        private void button11_Click(object sender, EventArgs e)
+        private void btn_sum_Click(object sender, EventArgs e)
         {
 
+            display.Text += "+";
+        }
+
+        private void btn_div_Click(object sender, EventArgs e)
+        {
+            display.Text += "/";
+        }
+
+        private void btn_sub_Click(object sender, EventArgs e)
+        {
+            display.Text += "-";
+        }
+
+        private void btn_clear_Click(object sender, EventArgs e)
+        {
+            display.Clear();
         }
     }
 }

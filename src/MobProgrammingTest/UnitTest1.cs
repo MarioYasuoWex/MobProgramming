@@ -1,4 +1,4 @@
-using MobProgramming;
+using SimpleCalculator;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -12,14 +12,13 @@ namespace MobProgrammingTest
         }
 
         [Test]
-        public void Test1()
+        public void OperationParsing()
         {
-            //Arrange
-            var class1 = new Class1();
-            //Act
-            var result = class1.TestMethod();
-            //Assert
-            Assert.That(result, Is.EqualTo("Hello World!") );
+            string number1 = "50";
+            string number2 = "2";
+            string operation = "/";
+
+            var op = new OperationModel(number1, number2, operation);
         }
 
     }

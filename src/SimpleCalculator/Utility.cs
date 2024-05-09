@@ -10,28 +10,47 @@ namespace SimpleCalculator
     {
         public double EvaluateCalculation(string text)
         {
-            string numberLeft = "";
-            string numberRight = "";
-
-            for(var i = 0; i < text.Length; i++)
+            if (text.Contains("-"))
             {
-                if (int.TryParse(text[i].ToString(), out int _))
-                {
-                    numberLeft = numberLeft + text[i];
-                }
-
-                if (IsAnLowerOperation(text[i]))
-                {
-                    // handle it
-                }
-
-                if (IsAnHigherOperation(text[i]))
-                {
-                    // handle it
-                }
+                var parts = text.Split("-");
+                var firstPart = parts[0];
+                var secondPart = parts[1];                
+                double.TryParse(firstPart, out double firstNumber);                
+                double.TryParse(secondPart, out double secondNumber);
+                return firstNumber - secondNumber;
             }
-            
-            throw new NotImplementedException();
+
+            if (text.Contains("+"))
+            {
+                var parts = text.Split("+");
+                var firstPart = parts[0];
+                var secondPart = parts[1];
+                double.TryParse(firstPart, out double firstNumber);
+                double.TryParse(secondPart, out double secondNumber);
+                return firstNumber + secondNumber;
+            }
+
+            if (text.Contains("*"))
+            {
+                var parts = text.Split("*");
+                var firstPart = parts[0];
+                var secondPart = parts[1];
+                double.TryParse(firstPart, out double firstNumber);
+                double.TryParse(secondPart, out double secondNumber);
+                return firstNumber * secondNumber;
+            }
+
+            if (text.Contains("/"))
+            {
+                var parts = text.Split("/");
+                var firstPart = parts[0];
+                var secondPart = parts[1];
+                double.TryParse(firstPart, out double firstNumber);
+                double.TryParse(secondPart, out double secondNumber);
+                return firstNumber / secondNumber;
+            }
+
+            return 0;
         }
 
         public static bool IsAnLowerOperation(char text)

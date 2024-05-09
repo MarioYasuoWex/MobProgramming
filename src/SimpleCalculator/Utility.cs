@@ -60,6 +60,32 @@ namespace SimpleCalculator
             return 0;
         }
 
+        public static double EvaluateCalculationComplex(string text)
+        {
+            // string pattern = @"(\d+\.?\d*) \* (.*)";
+            // text= 120+120/40*20
+            //       0123456789 
+
+
+
+            while (text.Contains("/") || text.Contains("*"))
+            {
+                int symbPositionOfDiv = text.IndexOf("/");
+                int symbPositionOfMul = text.IndexOf('*');
+                int currOper;
+                if (symbPositionOfDiv<symbPositionOfMul)
+                {
+                    currOper = symbPositionOfDiv;
+                }
+                
+            }
+
+
+
+
+            return 0;
+        }
+
         public static bool IsAnLowerOperation(char text)
         {
             switch(text)
@@ -84,6 +110,7 @@ namespace SimpleCalculator
             }
         }
 
-        public static bool IsValidOperation(char operation) => new List<string> { "+", "-", "*", "/" }.Any(x => x == operation.ToString());
+        public static bool IsValidHigherOperation(char operation) => new List<string> { "*", "/" }.Any(x => x == operation.ToString());
+        public static bool IsValidLowerOperation(char operation) => new List<string> { "+", "-"}.Any(x => x == operation.ToString());
     }
 }

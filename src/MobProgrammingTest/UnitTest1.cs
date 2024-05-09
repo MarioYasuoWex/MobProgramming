@@ -1,26 +1,19 @@
-using MobProgramming;
-using System.Security.Cryptography;
-using System.Text;
+using SimpleCalculator;
 
 namespace MobProgrammingTest
 {
     public class Tests
     {
-        [SetUp]
-        public void Setup()
+        [TestCase("1+1", ExpectedResult = 2)]
+        [TestCase("6/2", ExpectedResult = 3)]
+        [TestCase("5*10", ExpectedResult = 50)]
+        [TestCase("1-1", ExpectedResult = 0)]
+        [TestCase("1+2-1", ExpectedResult = 2)]
+        public double EvaluateCalculationTest(string calculation)
         {
-        }
+            var result = Utility.EvaluateCalculation(calculation);
 
-        [Test]
-        public void Test1()
-        {
-            //Arrange
-            var class1 = new Class1();
-            //Act
-            var result = class1.TestMethod();
-            //Assert
-            Assert.That(result, Is.EqualTo("Hello World!") );
-        }
-
+            return result;
+        } 
     }
 }

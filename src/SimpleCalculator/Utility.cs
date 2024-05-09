@@ -6,10 +6,17 @@ using System.Threading.Tasks;
 
 namespace SimpleCalculator
 {
-    public class Utility
+    public static class Utility
     {
-        public double EvaluateCalculation(string text)
+        public static double EvaluateCalculation(string text)
         {
+            /*
+                operation example = 1+1-1
+                operations in the string: 1+1 and 2-1
+                first operation is equal to 2
+                second operation is equal to the first result - 1
+             */
+
             if (text.Contains("-"))
             {
                 var parts = text.Split("-");
@@ -76,5 +83,7 @@ namespace SimpleCalculator
                     return false;
             }
         }
+
+        public static bool IsValidOperation(char operation) => new List<string> { "+", "-", "*", "/" }.Any(x => x == operation.ToString());
     }
 }

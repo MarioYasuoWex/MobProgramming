@@ -58,41 +58,51 @@
         {
             // string pattern = @"(\d+\.?\d*) \* (.*)";
             // text= 120+120/40*20
+            // 1. 120+3*20  
             //       0123456789 
 
 
-
+            //Multiplication and division operations
             while (text.Contains("/") || text.Contains("*"))
             {
-                int symbPositionOfDiv = text.IndexOf("/");
-                int symbPositionOfMul = text.IndexOf('*');
+                int symbPositionOfDiv = text.IndexOf("/")==-1?text.Length:text.IndexOf("/");
+                int symbPositionOfMul = text.IndexOf("*") == -1 ? text.Length : text.IndexOf("*");
                 int currOper;
 
                 if (symbPositionOfDiv < symbPositionOfMul)
                 {
                     currOper = symbPositionOfDiv;
-
-                    int i = 1;
-                    string left = "";
-                    while (int.TryParse(text[currOper - i].ToString(), out var _))
-                    {
-                        left += text[currOper - i];
-                        i++;
-                    }
-                    
-                    i = 1;
-                    string right = "";
-                    while (int.TryParse(text[currOper + i].ToString(), out var _))
-                    {
-                        right += text[currOper + i];
-                        i++;
-                    }
                 }
+                else 
+                {
+                    currOper = symbPositionOfMul;
+                }
+
+                int i = 1;
+                string left = "";
+                while (int.TryParse(text[currOper - i].ToString(), out var _))
+                {
+                    left = text[currOper - i]+left;
+                    i++;
+                }
+                int leftInd = currOper - i;
+                
+                
+                
+                int j = 1;
+                string right = "";
+
+                while (currOper+j<text.Length && int.TryParse(text[currOper + j].ToString(), out var _))
+                {
+                    right += text[currOper + j];
+                    j++;
+                }
+                
+                text=text.Substring(0,leftInd+1)+ EvaluateCalculation(left + text[currOper]+right) + text.Substring(currOper+j--);
 
             }
 
-
-
+           //Next continue addition and subtraction ops
 
             return 0;
         }

@@ -14,6 +14,14 @@ namespace MobProgrammingTest
             var result = Utility.EvaluateCalculation(calculation);
 
             return result;
-        } 
+        }
+
+        [TestCase("120+120/40*20", ExpectedResult = 180)]
+        public double EvaluateCalculationComplexTest(string calculation)
+        {
+            var result = Utility.EvaluateCalculationComplex(calculation);
+
+            return result;
+        }
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SimpleCalculator
+﻿namespace SimpleCalculator
 {
     public static class Utility
     {
@@ -21,8 +15,8 @@ namespace SimpleCalculator
             {
                 var parts = text.Split("-");
                 var firstPart = parts[0];
-                var secondPart = parts[1];                
-                double.TryParse(firstPart, out double firstNumber);                
+                var secondPart = parts[1];
+                double.TryParse(firstPart, out double firstNumber);
                 double.TryParse(secondPart, out double secondNumber);
                 return firstNumber - secondNumber;
             }
@@ -73,11 +67,28 @@ namespace SimpleCalculator
                 int symbPositionOfDiv = text.IndexOf("/");
                 int symbPositionOfMul = text.IndexOf('*');
                 int currOper;
-                if (symbPositionOfDiv<symbPositionOfMul)
+
+                if (symbPositionOfDiv < symbPositionOfMul)
                 {
                     currOper = symbPositionOfDiv;
+
+                    int i = 1;
+                    string left = "";
+                    while (int.TryParse(text[currOper - i].ToString(), out var _))
+                    {
+                        left += text[currOper - i];
+                        i++;
+                    }
+                    
+                    i = 1;
+                    string right = "";
+                    while (int.TryParse(text[currOper + i].ToString(), out var _))
+                    {
+                        right += text[currOper + i];
+                        i++;
+                    }
                 }
-                
+
             }
 
 
@@ -88,7 +99,7 @@ namespace SimpleCalculator
 
         public static bool IsAnLowerOperation(char text)
         {
-            switch(text)
+            switch (text)
             {
                 case '+':
                 case '-':
@@ -111,6 +122,6 @@ namespace SimpleCalculator
         }
 
         public static bool IsValidHigherOperation(char operation) => new List<string> { "*", "/" }.Any(x => x == operation.ToString());
-        public static bool IsValidLowerOperation(char operation) => new List<string> { "+", "-"}.Any(x => x == operation.ToString());
+        public static bool IsValidLowerOperation(char operation) => new List<string> { "+", "-" }.Any(x => x == operation.ToString());
     }
 }

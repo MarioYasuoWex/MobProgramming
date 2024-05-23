@@ -66,7 +66,7 @@ namespace SimpleCalculator
 
         private void btn_equal_Click(object sender, EventArgs e)
         {
-            string valueToEvaluate = display.Text;
+             display.Text = Utility.EvaluateCalculationComplex(display.Text).ToString();
 
         }
                

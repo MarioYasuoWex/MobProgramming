@@ -57,7 +57,7 @@
         public static double EvaluateCalculationComplex(string text)
         {
             // string pattern = @"(\d+\.?\d*) \* (.*)";
-            // text= 120+120/40*20
+            // text= 120+120/40*20-40
             // 1. 120+3*20  
             //       0123456789 
 
@@ -103,19 +103,20 @@
             }
 
             //Next continue addition and subtraction ops
+            // text= 120+60-40
             while (text.Contains("+") || text.Contains("-"))
             {
-                int symbPositionOfDiv = text.IndexOf("/") == -1 ? text.Length : text.IndexOf("/");
-                int symbPositionOfMul = text.IndexOf("*") == -1 ? text.Length : text.IndexOf("*");
+                int symbPositionOfAdd = text.IndexOf("+") == -1 ? text.Length : text.IndexOf("+");
+                int symbPositionOfSub = text.IndexOf("-") == -1 ? text.Length : text.IndexOf("-");
                 int currOper;
 
-                if (symbPositionOfDiv < symbPositionOfMul)
+                if (symbPositionOfAdd < symbPositionOfSub)
                 {
-                    currOper = symbPositionOfDiv;
+                    currOper = symbPositionOfAdd;
                 }
                 else
                 {
-                    currOper = symbPositionOfMul;
+                    currOper = symbPositionOfSub;
                 }
 
                 int i = 1;

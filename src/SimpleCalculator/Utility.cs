@@ -104,7 +104,9 @@
 
             //Next continue addition and subtraction ops
             // text= 120+60-40
-            while (text.Contains("+") || text.Contains("-"))
+
+            // KNOWN ISSUE: Calculations with negative numbers at the beginning will get an infinite loop
+            while (text.Contains("+") || (text.Contains("-") && !double.TryParse(text, out _)))
             {
                 int symbPositionOfAdd = text.IndexOf("+") == -1 ? text.Length : text.IndexOf("+");
                 int symbPositionOfSub = text.IndexOf("-") == -1 ? text.Length : text.IndexOf("-");

@@ -66,11 +66,15 @@ namespace SimpleCalculator
 
         private void btn_equal_Click(object sender, EventArgs e)
         {
-             display.Text = Utility.EvaluateCalculationComplex(display.Text).ToString();
-
+            try
+            {
+                display.Text = Utility.EvaluateCalculationComplex(display.Text).ToString();
+            }
+            catch(Exception ex)
+            {
+                display.Text = ex.Message;
+            }
         }
-               
-
         private void display_TextChanged(object sender, EventArgs e)
         {
 

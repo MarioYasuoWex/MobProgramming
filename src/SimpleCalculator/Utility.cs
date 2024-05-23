@@ -65,7 +65,7 @@
             //Multiplication and division operations
             while (text.Contains("/") || text.Contains("*"))
             {
-                int symbPositionOfDiv = text.IndexOf("/")==-1?text.Length:text.IndexOf("/");
+                int symbPositionOfDiv = text.IndexOf("/") == -1 ? text.Length : text.IndexOf("/");
                 int symbPositionOfMul = text.IndexOf("*") == -1 ? text.Length : text.IndexOf("*");
                 int currOper;
 
@@ -73,38 +73,77 @@
                 {
                     currOper = symbPositionOfDiv;
                 }
-                else 
+                else
                 {
                     currOper = symbPositionOfMul;
                 }
 
                 int i = 1;
                 string left = "";
-                while (int.TryParse(text[currOper - i].ToString(), out var _))
+                while (currOper - i >= 0 && int.TryParse(text[currOper - i].ToString(), out var _))
                 {
-                    left = text[currOper - i]+left;
+                    left = text[currOper - i] + left;
                     i++;
                 }
                 int leftInd = currOper - i;
-                
-                
-                
+
+
+
                 int j = 1;
                 string right = "";
 
-                while (currOper+j<text.Length && int.TryParse(text[currOper + j].ToString(), out var _))
+                while (currOper + j < text.Length && int.TryParse(text[currOper + j].ToString(), out var _))
                 {
                     right += text[currOper + j];
                     j++;
                 }
-                
-                text=text.Substring(0,leftInd+1)+ EvaluateCalculation(left + text[currOper]+right) + text.Substring(currOper+j--);
+
+                text = text.Substring(0, leftInd + 1) + EvaluateCalculation(left + text[currOper] + right) + text.Substring(currOper + j--);
 
             }
 
-           //Next continue addition and subtraction ops
+            //Next continue addition and subtraction ops
+            while (text.Contains("+") || text.Contains("-"))
+            {
+                int symbPositionOfDiv = text.IndexOf("/") == -1 ? text.Length : text.IndexOf("/");
+                int symbPositionOfMul = text.IndexOf("*") == -1 ? text.Length : text.IndexOf("*");
+                int currOper;
 
-            return 0;
+                if (symbPositionOfDiv < symbPositionOfMul)
+                {
+                    currOper = symbPositionOfDiv;
+                }
+                else
+                {
+                    currOper = symbPositionOfMul;
+                }
+
+                int i = 1;
+                string left = "";
+                while (currOper - i >= 0 && int.TryParse(text[currOper - i].ToString(), out var _))
+                {
+                    left = text[currOper - i] + left;
+                    i++;
+                }
+                int leftInd = currOper - i;
+
+
+
+                int j = 1;
+                string right = "";
+
+                while (currOper + j < text.Length && int.TryParse(text[currOper + j].ToString(), out var _))
+                {
+                    right += text[currOper + j];
+                    j++;
+                }
+
+                text = text.Substring(0, leftInd + 1) + EvaluateCalculation(left + text[currOper] + right) + text.Substring(currOper + j--);
+            }
+
+
+            double.TryParse(text, out double result);
+            return result;
         }
 
         public static bool IsAnLowerOperation(char text)

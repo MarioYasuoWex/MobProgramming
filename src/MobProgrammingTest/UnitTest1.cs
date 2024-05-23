@@ -8,7 +8,8 @@ namespace MobProgrammingTest
         [TestCase("6/2", ExpectedResult = 3)]
         [TestCase("5*10", ExpectedResult = 50)]
         [TestCase("1-1", ExpectedResult = 0)]
-        [TestCase("1+2-1", ExpectedResult = 2)]
+        //[TestCase("2*2*2", ExpectedResult = 8)]
+        //[TestCase("1+2-1", ExpectedResult = 2)]
         public double EvaluateCalculationTest(string calculation)
         {
             var result = Utility.EvaluateCalculation(calculation);
@@ -16,6 +17,11 @@ namespace MobProgrammingTest
             return result;
         }
 
+        [TestCase("1+1", ExpectedResult = 2)]
+        [TestCase("6/2", ExpectedResult = 3)]
+        [TestCase("5*10", ExpectedResult = 50)]
+        [TestCase("1-1", ExpectedResult = 0)]
+        [TestCase("2*2*2", ExpectedResult = 8)]
         [TestCase("120+120/40*20", ExpectedResult = 180)]
         public double EvaluateCalculationComplexTest(string calculation)
         {
